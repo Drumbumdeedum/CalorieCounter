@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
+    <link rel="preload" href="/food_background.jpg" as="image"/>
+    <title>Calorie App</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="navbar navbar-fixed-top navbar-default">
+        <div class="row">
+          <div class="col-md-4">
+            <form class="navbar-form navbar-left" action="/">
+              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-home" aria-hidden="true"/> Home</button>
+            </form>
+          </div>
+          <div class="col-md-7">
+            <span class="navbar-text navbar-right navtext" th:object="${mealStats}">Total Calories:
+              <span th:text="*{totalCalories}"/>
+            </span>
+            <span class="navbar-text navbar-right navtext" th:object="${mealStats}">Nr. of Meals:
+              <span th:text="*{nrOfMeals}"/>
+            </span>
+          </div>
+          <div class="col-md-1"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-primary panel-transparent">
+            <div class="panel-heading">Edit Meal</div>
+            <div class="panel-body">
+              <form action="/save" method="post" th:object="${meal}">
+                <input type="hidden" name="id" th:value="*{id}"/>
+                <input class="form-control" type="date" name="date"
+                       required="required"
+                       oninvalid="this.setCustomValidity('Please set a date')"
+                       oninput="setCustomValidity('')"/>
+                <br/>
+                <select class="form-control" name="type"
+                        required="required"
+                        oninvalid="this.setCustomValidity('Please select a type')"
+                        oninput="setCustomValidity('')">
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Elevenses">Elevenses</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Snack">Snack</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Midnight Snack">Midnight Snack</option>
+                </select>
+                <br/>
+                <input class="form-control" type="text" name="description" th:value="*{description}"
+                       required="required"
+                       oninvalid="this.setCustomValidity('Please enter a description')"
+                       oninput="setCustomValidity('')"/>
+                <br/>
+                <input class="form-control" type="number" name="calories" th:value="*{calories}"
+                       required="required"
+                       oninvalid="this.setCustomValidity('Please enter a valid number')"
+                       oninput="setCustomValidity('')"/>
+                <br/>
+                <button class="btn btn-primary">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8"/>
+      </div>
+    </div>
+
+  <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+  <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+  </body>
+</html>

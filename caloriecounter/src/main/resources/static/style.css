@@ -1,0 +1,62 @@
+body {
+  background: url("food_background.jpg") no-repeat fixed;
+  background-size: cover;
+}
+
+.glyphicon {
+  width: 18px;
+  height: 14px;
+}
+
+.navbar {
+  background-color: rgb(220, 199, 170);
+  border: none;
+}
+
+.btn {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgb(247, 136, 47);
+  color: white;
+  border: none;
+}
+
+.panel-transparent {
+  margin-top: 100px;
+  background: none;
+  border: none;
+}
+
+.panel-transparent .panel-heading {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgba(220, 199, 170, 0.9) !important;
+  border: none;
+}
+
+.panel-transparent .panel-body {
+  background-color: rgba(170, 170, 170, 0.9) !important;
+  border: none;
+}
+
+table {
+  color: white;
+}
+
+.table-header {
+  color: black;
+  font-size: 16px;
+  border-collapse: collapse;
+}
+
+.iconColumn {
+  text-align: center;
+}
+
+span, .navtext {
+  color: white !important;
+}
+
+.navtext {
+  font-weight: bold !important;
+}
