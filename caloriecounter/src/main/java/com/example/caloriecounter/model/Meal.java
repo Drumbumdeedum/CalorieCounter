@@ -1,5 +1,6 @@
 package com.example.caloriecounter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ public class Meal {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "meal_id")
+  @JsonIgnore
   private long id;
   @Column(name = "date_of_consumption")
   private Date date;
