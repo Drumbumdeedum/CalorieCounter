@@ -3,6 +3,7 @@ package com.example.caloriecounter.controller;
 import com.example.caloriecounter.model.Meal;
 import com.example.caloriecounter.datatransfer.MealStats;
 import com.example.caloriecounter.repository.MealRepository;
+import com.example.caloriecounter.service.MealService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,27 +20,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CalorieMainController {
 
-  @Autowired
   MealRepository mealRepo;
+  MealStats mealStats;
+  MealService mealService;
 
   @Autowired
-  MealStats mealStats;
+  public CalorieMainController(MealRepository mealRepo,
+      MealStats mealStats, MealService mealService) {
+    this.mealRepo = mealRepo;
+    this.mealStats = mealStats;
+    this.mealService = mealService;
+  }
 
   @RequestMapping("/")
   public String index(Model model) {
-
-    List<Meal> mealList = (List<Meal>)mealRepo.findAll();
-    long sum = 0;
-
-    for (int i=0; i < mealList.size(); i++) {
-      sum += mealList.get(i).getCalories();
-    }
-
-    mealStats.setNrOfMeals(mealRepo.count());
-    mealStats.setTotalCalories(sum);
-
-    model.addAttribute("mealStats", mealStats);
-    model.addAttribute("mealRepo", mealRepo.findAll());
+    mealService.showMealStats(model);
+    mealService.showAllMeals(model);
     return "index";
   }
 

@@ -16,7 +16,6 @@ public class Meal {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "meal_id")
-  @JsonIgnore
   private long id;
   @Column(name = "date_of_consumption")
   private Date date;
