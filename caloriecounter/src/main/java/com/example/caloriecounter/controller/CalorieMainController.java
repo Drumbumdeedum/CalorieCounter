@@ -7,7 +7,6 @@ import com.example.caloriecounter.service.MealService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,16 +43,7 @@ public class CalorieMainController {
                         @RequestParam("description") String description,
                         @RequestParam("type") String type,
                         @RequestParam("calories") int calories) {
-
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    Date dateFormatted = null;
-    try {
-      dateFormatted = formatter.parse(date);
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
-
-    mealRepo.save(new Meal(dateFormatted, type, description, calories));
+    mealService.addMeal(date, description, type, calories);
     return "redirect:/";
   }
 

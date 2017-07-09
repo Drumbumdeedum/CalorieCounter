@@ -3,6 +3,9 @@ package com.example.caloriecounter.service;
 import com.example.caloriecounter.datatransfer.MealStats;
 import com.example.caloriecounter.model.Meal;
 import com.example.caloriecounter.repository.MealRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +37,16 @@ public class MealService {
     mealStats.setNrOfMeals(mealRepository.count());
     mealStats.setTotalCalories(sumOfCalories);
     model.addAttribute("mealStats", mealStats);
+  }
+
+  public void addMeal(String date, String description, String type, int calories) {
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    Date dateFormatted = null;
+    try {
+      dateFormatted = formatter.parse(date);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    mealRepository.save(new Meal(dateFormatted, type, description, calories));
   }
 }
