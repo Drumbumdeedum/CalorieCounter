@@ -2,18 +2,27 @@ package com.example.caloriecounter.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "meal")
 public class Meal {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "meal_id")
   private long id;
+  @Column(name = "date_of_consumption")
   private Date date;
-  private String type, description;
+  @Column(name = "meal_type")
+  private String type;
+  @Column(name = "description_of_meal")
+  private String description;
+  @Column(name = "meal_calories")
   private int calories;
 
   public Meal() {
