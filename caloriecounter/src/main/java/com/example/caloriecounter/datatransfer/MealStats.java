@@ -1,4 +1,4 @@
-package com.example.caloriecounter.model;
+package com.example.caloriecounter.datatransfer;
 
 import org.springframework.stereotype.Component;
 

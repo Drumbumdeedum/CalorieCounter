@@ -1,8 +1,8 @@
 package com.example.caloriecounter.controller;
 
 import com.example.caloriecounter.model.Meal;
-import com.example.caloriecounter.model.MealStats;
-import com.example.caloriecounter.repository.CalorieRepository;
+import com.example.caloriecounter.datatransfer.MealStats;
+import com.example.caloriecounter.repository.MealRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CalorieMainController {
 
   @Autowired
-  CalorieRepository mealRepo;
+  MealRepository mealRepo;
 
   @Autowired
   MealStats mealStats;

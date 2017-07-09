@@ -1,10 +1,10 @@
 package com.example.caloriecounter.controller;
 
-import com.example.caloriecounter.model.DeleteId;
+import com.example.caloriecounter.datatransfer.DeleteId;
 import com.example.caloriecounter.model.Meal;
-import com.example.caloriecounter.model.MealStats;
-import com.example.caloriecounter.model.Status;
-import com.example.caloriecounter.repository.CalorieRepository;
+import com.example.caloriecounter.datatransfer.MealStats;
+import com.example.caloriecounter.datatransfer.Status;
+import com.example.caloriecounter.repository.MealRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalorieRestController {
 
   @Autowired
-  CalorieRepository mealRepo;
+  MealRepository mealRepo;
 
   @Autowired
   MealStats mealStats;
