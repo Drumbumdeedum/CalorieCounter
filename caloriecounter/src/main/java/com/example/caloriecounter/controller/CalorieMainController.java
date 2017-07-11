@@ -49,8 +49,7 @@ public class CalorieMainController {
 
   @GetMapping("/{id}/delete")
   public String delete(@PathVariable long id, Model model) {
-    mealRepo.delete(id);
-    model.addAttribute("mealRepo", mealRepo.findAll());
+    mealService.deleteMeal(model, id);
     return"redirect:/";
   }
 
