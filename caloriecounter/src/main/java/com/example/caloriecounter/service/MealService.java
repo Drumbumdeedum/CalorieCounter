@@ -49,4 +49,9 @@ public class MealService {
     }
     mealRepository.save(new Meal(dateFormatted, type, description, calories));
   }
+
+  public void deleteMeal(Model model, long id) {
+    mealRepository.delete(id);
+    model.addAttribute("mealRepo", mealRepository.findAll());
+  }
 }
