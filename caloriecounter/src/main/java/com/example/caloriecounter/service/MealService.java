@@ -28,6 +28,10 @@ public class MealService {
     model.addAttribute("mealRepo", mealRepository.findAll());
   }
 
+  public void showOneMealByID(Model model, Long id) {
+    model.addAttribute("meal", mealRepository.findOne(id));
+  }
+
   public void showMealStats(Model model) {
     List<Meal> mealList = (List<Meal>)mealRepository.findAll();
     long sumOfCalories = 0;
@@ -53,5 +57,9 @@ public class MealService {
   public void deleteMeal(Model model, long id) {
     mealRepository.delete(id);
     model.addAttribute("mealRepo", mealRepository.findAll());
+  }
+
+  public void saveUpdatedMeal() {
+
   }
 }
