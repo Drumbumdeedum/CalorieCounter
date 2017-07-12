@@ -59,7 +59,20 @@ public class MealService {
     model.addAttribute("mealRepo", mealRepository.findAll());
   }
 
-  public void saveUpdatedMeal() {
-
+  public void saveUpdatedMeal(Model model, long id, String date, String description, String type, int calories) {
+    model.addAttribute("meal", mealRepository.findOne(id));
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    Date dateFormatted = null;
+    try {
+      dateFormatted = formatter.parse(date);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    Meal currentMeal = mealRepository.findOne(id);
+    currentMeal.setDate(dateFormatted);
+    currentMeal.setDescription(description);
+    currentMeal.setType(type);
+    currentMeal.setCalories(calories);
+    mealRepository.save(currentMeal);
   }
 }
