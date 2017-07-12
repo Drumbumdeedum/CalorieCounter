@@ -1,12 +1,8 @@
 package com.example.caloriecounter.controller;
 
-import com.example.caloriecounter.model.Meal;
 import com.example.caloriecounter.datatransfer.MealStats;
 import com.example.caloriecounter.repository.MealRepository;
 import com.example.caloriecounter.service.MealService;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,24 +63,7 @@ public class CalorieMainController {
                       @RequestParam("description") String description,
                       @RequestParam("type") String type,
                       @RequestParam("calories") int calories) {
-    mealService.saveUpdatedMeal(Model model, long);
-
-    model.addAttribute("meal", mealRepo.findOne(id));
-
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    Date dateFormatted = null;
-    try {
-      dateFormatted = formatter.parse(date);
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
-
-    Meal currentMeal = mealRepo.findOne(id);
-    currentMeal.setDate(dateFormatted);
-    currentMeal.setDescription(description);
-    currentMeal.setType(type);
-    currentMeal.setCalories(calories);
-    mealRepo.save(currentMeal);
+    mealService.saveUpdatedMeal(model, id, date, description, type, calories);
     return("redirect:/");
   }
 }
