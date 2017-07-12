@@ -55,9 +55,8 @@ public class CalorieMainController {
 
   @GetMapping("/{id}/edit")
   public String editElement(@PathVariable long id, Model model) {
-    model.addAttribute("meal", mealRepo.findOne(id));
-    mealStats.setNrOfMeals(mealRepo.count());
-    model.addAttribute("mealStats", mealStats);
+    mealService.showOneMealByID(model, id);
+    mealService.showMealStats(model);
     return "edit";
   }
 
@@ -68,6 +67,7 @@ public class CalorieMainController {
                       @RequestParam("description") String description,
                       @RequestParam("type") String type,
                       @RequestParam("calories") int calories) {
+    mealService.saveUpdatedMeal(Model model, long);
 
     model.addAttribute("meal", mealRepo.findOne(id));
 
